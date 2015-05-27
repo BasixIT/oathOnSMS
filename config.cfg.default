@@ -1,0 +1,5 @@
+DBSERVER=localhost
+DBUSER=root
+DBPASSWORD=password
+DBNAME=databasename
+SMSOUTPATH=/var/spool/sms/outgoing/

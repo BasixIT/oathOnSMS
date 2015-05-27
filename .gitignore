@@ -1,0 +1,12 @@
+# Log files
+*.log
+
+
+# Edited files
+*.*~
+
+
+# Config files
+config.cfg
+
+
