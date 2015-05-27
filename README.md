@@ -4,14 +4,17 @@ Installation
 Requirements
 ======
 
--liboath, oathtool http://www.nongnu.org/oath-toolkit/
--SMSTools3 http://smstools3.kekekasvi.com/
--MySQL Server
+- liboath, oathtool http://www.nongnu.org/oath-toolkit/
+- SMSTools3 http://smstools3.kekekasvi.com/
+- MySQL Server
 
 
-Create Table
+Database
 ======
 
+Create a MySQL-Database with any name and fill it with this table:
+
+```
 CREATE TABLE  `oath_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -21,26 +24,29 @@ CREATE TABLE  `oath_users` (
   `params` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+```
 
-name, contains the full name of the seed-owner
-number, is the mobile number and identifys the seed
-server, is the identification number for the seed
-seed, holds the seed data on which the token is generated
-params, which will be passed to the oathlib
+- name, contains the full name of the seed-owner
+- number, is the mobile number and identifys the seed
+- server, is the identification number for the seed
+- seed, holds the seed data on which the token is generated
+- params, which will be passed to the oathlib
 
 
-Customise config.cfg
+Customise config
 ======
+
+Copy over the config.cfg.default to config.cfg and edit the file to fit your env.
 
 Warning: The ordering of the lines is important, don't modify the properties unless you know what you are doing.
 
-Please configure all properties, as they are all required to let this work.
+Please configure all properties, as they are all required to get this working.
 
-DBSERVER, Servername of the Database
-DBUSER, Database-User which has access to the 
-DBPASSWORD, Password if the specified user
-DBNAME, Name of database which has 'oath_users' Table.
-SMSOUTPATH, path of outgoing sms for SMSTools3
+- DBSERVER, Servername of the Database
+- DBUSER, Database-User which has access to the 
+- DBPASSWORD, Password if the specified user
+- DBNAME, Name of database which has 'oath_users' Table.
+- SMSOUTPATH, path of outgoing sms for SMSTools3
 
 License
 ======
