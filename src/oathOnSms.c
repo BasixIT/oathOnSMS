@@ -31,7 +31,11 @@ void main(int argc, char *argv[]) {
 	// Read from config file, see config.c
 	configuration = get_config(FILENAME);
 
-	char* command = argv[1];
+	char* command;
+	if (argc > 0){
+		command = argv[1];}
+	else{
+		command = "help";}
 
 	if (strcmp(command,"genToken") == 0){
 		char* temp = "";
@@ -78,7 +82,6 @@ void main(int argc, char *argv[]) {
 		printf("ERROR: Unkown command \n\n");
 		printHelp();
 	}
-
 
 }
 
@@ -161,15 +164,27 @@ char* generateToken(char* mobileNumber, char* serverName) {
 	while ((row = mysql_fetch_row(res)) != NULL)
 	{
 		strcat(seed,row[0]);
-		strcat(params,row[1]);
+		if (row[1] != NULL)
+			strcat(params,row[1]);
 	}
+
 	/* close connection */
 	mysql_free_result(res);
 	mysql_close(conn);
 
 	if (strlen(seed) != 0)
 	{
-		char call[50] = "oathtool --totp -s60 ";
+		trim(params);
+		char call[50] = "oathtool ";
+
+		if (strlen(params) != 0)
+		{
+			strcat(call,params);
+			strcat(call," ");
+		}
+		else 
+			strcat(call,"--totp -s60 "); // Timebased Token with 60 sec as default
+
 		strcat(call, seed);
 
         FILE *pipein_fp;

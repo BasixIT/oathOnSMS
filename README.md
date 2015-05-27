@@ -26,7 +26,7 @@ name, contains the full name of the seed-owner
 number, is the mobile number and identifys the seed
 server, is the identification number for the seed
 seed, holds the seed data on which the token is generated
-WIP: params, which will be passed to the oathlib
+params, which will be passed to the oathlib
 
 
 Customise config.cfg
